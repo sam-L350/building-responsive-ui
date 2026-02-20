@@ -1,0 +1,157 @@
+Summative Assignment - Building Responsive UI
+
+theme:
+    Student Finance Tracker (budgets, transactions, search)
+
+    You’ll build an accessible, responsive, vanilla HTML/CSS/JS app that demonstrates: semantic structure, mobile-first layouts, DOM manipulation, events, regex validation & search, basic persistence, and clean modular code.
+
+Learning Outcomes
+    . Regex: Validate inputs and power search (incl. at least one advanced pattern such as lookahead/behind or back-reference).
+    . HTML/CSS: Semantic layout with responsive design (Flexbox + media queries) and at least one tasteful animation/transition.
+    . JavaScript: DOM updates, event handling, sorting/filtering, modular structure (ES modules or IIFE), and error handling.
+    . Data: Save/load to localStorage; JSON import/export with validation.
+    . Accessibility (a11y): Keyboard navigation, visible focus, ARIA live regions, and adequate color contrast.
+
+Core Features (apply to any theme)
+
+A) Pages/Sections
+
+    About: Purpose + your contact (GitHub, email).
+
+
+    Dashboard/Stats
+
+
+    Records Table (or cards on mobile)
+
+
+    Add/Edit Form
+
+
+    Settings
+
+
+
+
+B) Data Model
+
+    Each record must include a unique id and timestamps:
+    { id: "rec_0001", description: "Lunch at cafeteria", // or title amount: 12.50, // or duration/pages for other themes category: "Food", // or tag date: "2025-09-29", createdAt: "...", updatedAt: "..." }
+    Auto-save all changes to localStorage.
+
+
+    Import/Export JSON (validate structure before loading).
+
+
+
+
+C) Forms & Regex Validation (min 4 rules)
+
+    Description/title: forbid leading/trailing spaces and collapse doubles (e.g., /^\S(?:.*\S)?$/)
+
+
+    Numeric field (amount/duration/pages): ^(0|[1-9]\d*)(\.\d{1,2})?$
+
+
+    Date (YYYY-MM-DD): ^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$
+
+
+    Category/tag (letters, spaces, hyphens): /^[A-Za-z]+(?:[ -][A-Za-z]+)*$/
+
+
+    Advanced regex (≥1): e.g., back-reference to catch duplicate words \b(\w+)\s+\1\b, or lookahead for password/rate strength.
+
+
+
+
+D) Table, Sorting, and Regex Search
+
+    Render all records; allow sort by date, description/title (A↕Z), and numeric field (↑↓).
+
+
+    Live regex search:
+
+
+    User types a pattern; compile with try/catch; toggle case-insensitive.
+
+
+    Highlight matches using <mark> without breaking accessibility.
+
+
+
+
+E) Stats Dashboard
+
+    Minimum: total records, sum of numeric field, top category/tag, last-7-days trend (simple CSS/JS chart).
+
+
+    Cap/Target: Set a numeric cap; show remaining/overage in an ARIA live message (polite when under, assertive when exceeded).
+
+
+
+
+F) Units/Currency
+    Finance Tracker: Base currency + 2 others. Manual rates in Settings (no API).
+
+
+    Planner/Vault: Define units (minutes/pages) and allow basic conversions (e.g., minutes↔hours).
+
+
+
+
+G) Edit & Delete
+    Inline edit per row; confirm delete; update state, UI, stats, and updatedAt.
+
+
+
+
+H) Accessibility & UX
+    Semantic landmarks (header, nav, main, section, footer) and proper headings.
+
+
+    Labels bound to inputs; visible focus styles; skip-to-content link.
+
+
+    Status/errors announced via role="status" or aria-live.
+
+
+    Keyboard-only flow must work.
+
+
+    Mobile-first responsive design (≥3 breakpoints: ~360px, 768px, 1024px).
+
+
+
+
+Theme-Specific Notes
+
+1) Student Finance Tracker
+    Default categories: Food, Books, Transport, Entertainment, Fees, Other (editable).
+
+
+    Example search patterns:
+
+
+    Cents present: /\.\d{2}\b/
+
+
+    Beverage keyword: /(coffee|tea)/i
+
+
+    Duplicate word: /\b(\w+)\s+\1\b/
+
+
+
+File Structure & Constraints
+    No frameworks (no Bootstrap/React/etc.). Optional jQuery only on an extra scraping page (Stretch).
+
+
+Suggested folders:
+    index.html, styles/, scripts/, assets/, tests.html, seed.json
+
+
+Suggested modules:
+    scripts/storage.js, state.js, ui.js, validators.js, search.js
+
+
+

@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Finance Tracker</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <meta
+      name="description"
+      content="A responsive student finance tracker for managing budgets, transactions, and expenses"
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+      <div class="container">
+        <h1 class="logo">Student Finance Tracker</h1>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li>
+              <a href="#about" class="nav-link" data-page="about">About</a>
+            </li>
+            <li>
+              <a href="#dashboard" class="nav-link" data-page="dashboard"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a href="#records" class="nav-link" data-page="records"
+                >Records</a
+              >
+            </li>
+            <li>
+              <a href="#add" class="nav-link" data-page="add"
+                >Add Transaction</a
+              >
+            </li>
+            <li>
+              <a href="#settings" class="nav-link" data-page="settings"
+                >Settings</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <div class="mobile-nav-header">
+        <h2 class="mobile-nav-title">Menu</h2>
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">
+          <span class="close-icon">&times;</span>
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li>
+          <a href="#about" class="mobile-nav-link" data-page="about">About</a>
+        </li>
+        <li>
+          <a href="#dashboard" class="mobile-nav-link" data-page="dashboard">Dashboard</a>
+        </li>
+        <li>
+          <a href="#records" class="mobile-nav-link" data-page="records">Records</a>
+        </li>
+        <li>
+          <a href="#add" class="mobile-nav-link" data-page="add">Add Transaction</a>
+        </li>
+        <li>
+          <a href="#settings" class="mobile-nav-link" data-page="settings">Settings</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main id="main-content" class="main">
+      <div class="container">
+        <!-- About Section -->
+        <section
+          id="about"
+          class="page-section"
+          aria-labelledby="about-heading"
+        >
+          <h2 id="about-heading">About</h2>
+          <div class="about-content">
+            <p>
+              The Student Finance Tracker helps you manage your budget, track
+              expenses, and monitor spending patterns throughout your academic
+              journey.
+            </p>
+            <div class="contact-info">
+              <h3>Contact</h3>
+              <p>
+                GitHub:
+                <a
+                  href="https://github.com/sam-L350"
+                  target="_blank"
+                  rel="noopener"
+                  >sam-L350</a
+                >
+              </p>
+              <p>
+                Email:
+                <a href="mailto:s.nizeyiman@alustudent.com"
+                  >s.nizeyiman@alustudent.com</a
+                >
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section
+          id="dashboard"
+          class="page-section hidden"
+          aria-labelledby="dashboard-heading"
+        >
+          <h2 id="dashboard-heading">Dashboard</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Total Transactions</h3>
+              <p class="stat-value" id="total-transactions">0</p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Spent</h3>
+              <p class="stat-value" id="total-spent">$0.00</p>
+            </div>
+            <div class="stat-card">
+              <h3>Top Category</h3>
+              <p class="stat-value" id="top-category">None</p>
+            </div>
+            <div class="stat-card">
+              <h3>Budget Status</h3>
+              <p class="stat-value" id="budget-status">No budget set</p>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <h3>Last 7 Days Trend</h3>
+            <div
+              class="simple-chart"
+              id="trend-chart"
+              role="img"
+              aria-label="Spending trend over last 7 days"
+            >
+              <!-- Chart will be generated here -->
+            </div>
+          </div>
+
+          <div
+            class="budget-alert"
+            role="status"
+            aria-live="polite"
+            id="budget-alert"
+          ></div>
+        </section>
+
+        <!-- Records Section -->
+        <section
+          id="records"
+          class="page-section hidden"
+          aria-labelledby="records-heading"
+        >
+          <h2 id="records-heading">Transaction Records</h2>
+
+          <div class="controls">
+            <div class="search-container">
+              <label for="search-input">Search Records:</label>
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Enter search pattern..."
+                aria-describedby="search-help"
+              />
+              <div id="search-help" class="help-text">
+                Use regex patterns. Try: /\.\d{2}\b/ for cents, /(coffee|tea)/i
+                for beverages
+              </div>
+              <div class="search-options">
+                <label>
+                  <input type="checkbox" id="case-insensitive" /> Case
+                  Insensitive
+                </label>
+              </div>
+            </div>
+
+            <div class="sort-container">
+              <label for="sort-select">Sort by:</label>
+              <select id="sort-select">
+                <option value="date-desc">Date (Newest)</option>
+                <option value="date-asc">Date (Oldest)</option>
+                <option value="description-asc">Description (A-Z)</option>
+                <option value="description-desc">Description (Z-A)</option>
+                <option value="amount-asc">Amount (Low-High)</option>
+                <option value="amount-desc">Amount (High-Low)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table
+              class="records-table"
+              role="table"
+              aria-label="Transaction records"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">Description</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="records-tbody">
+                <!-- Records will be populated here -->
+              </tbody>
+            </table>
+            <div id="no-records" class="no-records hidden">
+              No records found
+            </div>
+          </div>
+        </section>
+
+        <!-- Add Transaction Section -->
+        <section
+          id="add"
+          class="page-section hidden"
+          aria-labelledby="add-heading"
+        >
+          <h2 id="add-heading">Add Transaction</h2>
+
+          <form id="transaction-form" class="form" novalidate>
+            <div class="form-group">
+              <label for="description">Description *</label>
+              <input
+                type="text"
+                id="description"
+                name="description"
+                required
+                aria-describedby="description-error"
+              />
+              <div
+                id="description-error"
+                class="error-message"
+                role="alert"
+              ></div>
+            </div>
+
+            <div class="form-group">
+              <label for="amount">Amount *</label>
+              <input
+                type="text"
+                id="amount"
+                name="amount"
+                required
+                aria-describedby="amount-error"
+                placeholder="0.00"
+              />
+              <div id="amount-error" class="error-message" role="alert"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category *</label>
+              <select
+                id="category"
+                name="category"
+                required
+                aria-describedby="category-error"
+              >
+                <option value="">Select a category</option>
+                <option value="Food">Food</option>
+                <option value="Books">Books</option>
+                <option value="Transport">Transport</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Fees">Fees</option>
+                <option value="Other">Other</option>
+              </select>
+              <div id="category-error" class="error-message" role="alert"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Date *</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                required
+                aria-describedby="date-error"
+              />
+              <div id="date-error" class="error-message" role="alert"></div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                Add Transaction
+              </button>
+              <button type="reset" class="btn btn-secondary">Clear Form</button>
+            </div>
+          </form>
+
+          <div
+            id="form-status"
+            class="form-status"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </section>
+
+        <!-- Settings Section -->
+        <section
+          id="settings"
+          class="page-section hidden"
+          aria-labelledby="settings-heading"
+        >
+          <h2 id="settings-heading">Settings</h2>
+
+          <div class="settings-grid">
+            <div class="setting-section">
+              <h3>Budget Settings</h3>
+              <div class="form-group">
+                <label for="budget-cap">Monthly Budget Cap</label>
+                <input type="text" id="budget-cap" placeholder="1000.00" />
+              </div>
+              <button id="save-budget" class="btn btn-primary">
+                Save Budget
+              </button>
+            </div>
+
+            <div class="setting-section">
+              <h3>Currency Settings</h3>
+              <div class="currency-rates">
+                <div class="form-group">
+                  <label for="base-currency">Base Currency</label>
+                  <select id="base-currency">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="RWF">RWF - Rwandan Franc</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="rate-usd">USD Rate</label>
+                  <input
+                    type="text"
+                    id="rate-usd"
+                    placeholder="1.00"
+                    value="1.00"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="rate-eur">EUR Rate</label>
+                  <input type="text" id="rate-eur" placeholder="0.85" />
+                </div>
+                <div class="form-group">
+                  <label for="rate-gbp">GBP Rate</label>
+                  <input type="text" id="rate-gbp" placeholder="0.75" />
+                </div>
+                <div class="form-group">
+                  <label for="rate-rwf">RWF Rate</label>
+                  <input type="text" id="rate-rwf" placeholder="1300" />
+                </div>
+              </div>
+              <button id="save-rates" class="btn btn-primary">
+                Save Rates
+              </button>
+            </div>
+
+            <div class="setting-section">
+              <h3>Data Management</h3>
+              <div class="data-actions">
+                <button id="export-json" class="btn btn-secondary">
+                  Export to JSON
+                </button>
+                <button id="import-json" class="btn btn-secondary">
+                  Import from JSON
+                </button>
+                <input
+                  type="file"
+                  id="import-file"
+                  accept=".json"
+                  class="hidden"
+                />
+                <button id="clear-data" class="btn btn-danger">
+                  Clear All Data
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="settings-status"
+            class="settings-status"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2024 Student Finance Tracker. Built with vanilla HTML, CSS, and
+          JavaScript.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/validators.js"></script>
+    <script src="scripts/state.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/search.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
