@@ -2,8 +2,7 @@
 
 A simple but powerful finance tracker designed specifically for students. Keep track of your spending, set budgets, and understand where your money goes each month.
 
-**Try it live**: [https://username.github.io/student-finance-tracker](https://username.github.io/student-finance-tracker)
-
+**Try it live**: [https://sam-l350.github.io/building-responsive-ui/]
 ## What It Looks Like
 
 I went with a clean, modern design that's easy on the eyes:
@@ -32,26 +31,7 @@ I went with a clean, modern design that's easy on the eyes:
 - **Smart Validation**: Catches mistakes before they happen
 - **Clean Code**: Organized and maintainable
 - **No Dependencies**: Runs in any modern browser
-
-## File Structure
-
-```
-summativeAssignment-BuildingResponsiveUI/
-├── index.html              # Main HTML file
-├── README.md               # Project documentation
-├── seed.json               # Sample data
-├── instructions.txt        # Assignment requirements
-├── styles/
-│   └── main.css           # Main stylesheet
-├── scripts/
-│   ├── main.js            # Application entry point
-│   ├── storage.js         # LocalStorage management
-│   ├── validators.js      # Form validation with regex
-│   ├── state.js           # State management
-│   ├── search.js          # Search functionality
-│   └── ui.js              # UI manipulation
-└── assets/                # Static assets
-```
+ 
 
 ## Smart Search & Validation
 
@@ -110,59 +90,10 @@ Here are the handy keyboard tricks I built in:
 - **Arrow Keys**: Move through search results
 - **Enter**: Pick a search result
 
-## Works Everywhere
-
-I tested this on all the major browsers:
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-
-And it adapts to any screen size:
-
-- **Phone**: Simple, touch-friendly layout
-- **Tablet**: Balanced design for medium screens
-- **Desktop**: Full-featured experience
-- **Large screens**: Optimized for big displays
 
 ## Getting Started
 
 1. Download the project files
 2. Open `index.html` in your browser
 3. That's it! The app loads with sample data to play with
-
-## Testing It Out
-
-I built in some ways to make sure everything works right:
-
-### Quick Checks
-
-1. **Open Developer Tools** (F12) to spot any errors
-2. **Try breaking the forms** - see if validation catches mistakes
-3. **Navigate with keyboard only** - Tab through everything
-4. **Resize your browser** - watch it adapt to different screens
-5. **Test the search** - try the patterns I mentioned above
-
-### Browser Testing
-
-I've tested on:
-
-- Chrome
-- Firefox
-- Safari
-- Edge
-
-## What's Next?
-
-Ideas for future versions:
-
-- Better charts and graphs
-- Custom transaction categories
-- Automatic recurring transactions
-- Spending insights and tips
-- Cloud sync option
-- Mobile app version
-
----
-
+ 
