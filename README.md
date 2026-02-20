@@ -3,6 +3,7 @@
 A simple but powerful finance tracker designed specifically for students. Keep track of your spending, set budgets, and understand where your money goes each month.
 
 **Try it live**: [https://sam-l350.github.io/building-responsive-ui/]
+**Demo video**: [https://youtu.be/fcCgIddegL8?si=nXM_ON1W73vrX7Iu]
 ## What It Looks Like
 
 I went with a clean, modern design that's easy on the eyes:
